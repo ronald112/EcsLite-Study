@@ -6,6 +6,7 @@ namespace Client {
     class SharedConstants
     {
         public float speed = 1;
+        public int accuracy = 1;
     }
     sealed class EcsStartup : MonoBehaviour {
         EcsSystems _systems;
