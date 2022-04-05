@@ -10,23 +10,23 @@ namespace Client {
             // var shared = new Shared ();
             // systems = new EcsSystems (new EcsWorld (), shared);
             _systems = new EcsSystems (new EcsWorld ());
-            _systems
-                // register your systems here, for example:
-                // .Add (new TestSystem1 ())
-                // .Add (new TestSystem2 ())
-                
-                // register additional worlds here, for example:
-                // .AddWorld (new EcsWorld (), "events")
-#if UNITY_EDITOR
-                // add debug systems for custom worlds here, for example:
-                // .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ("events"))
-                .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ())
-#endif
-                .Init ();
+            
+            AddSystems();
+
+            _systems.Init ();
         }
 
         void Update () {
             _systems?.Run ();
+        }
+
+        private void AddSystems()
+        {
+#if UNITY_EDITOR
+                // add debug systems for custom worlds here, for example:
+                // .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ("events"))
+                _systems.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
+#endif
         }
 
         void OnDestroy () {
