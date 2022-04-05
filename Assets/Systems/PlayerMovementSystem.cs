@@ -1,8 +1,9 @@
 using Leopotam.EcsLite;
+using UnityEngine;
 
 namespace Client
 {
-    public class PlayerMovementSystem
+    public class PlayerMovementSystem : IEcsRunSystem, IEcsInitSystem
     {
         private EcsWorld _world = null;
         private EcsFilter _filter = null;

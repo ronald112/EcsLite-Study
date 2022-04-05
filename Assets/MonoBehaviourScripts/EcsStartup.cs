@@ -1,5 +1,6 @@
 using Leopotam.EcsLite;
 using UnityEngine;
+using Voody.UniLeo.Lite;
 
 namespace Client {
     sealed class EcsStartup : MonoBehaviour {
@@ -13,6 +14,7 @@ namespace Client {
             
             AddSystems();
 
+            _systems.ConvertScene();
             _systems.Init ();
         }
 
@@ -23,10 +25,14 @@ namespace Client {
         private void AddSystems()
         {
 #if UNITY_EDITOR
-                // add debug systems for custom worlds here, for example:
-                // .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ("events"))
-                _systems.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
+            // add debug systems for custom worlds here, for example:
+            // .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ("events"))
+            _systems.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
 #endif
+            _systems
+                .Add(new PlayerMovementSystem())
+                .Add(new PlayerInputSystem())
+                ;
         }
 
         void OnDestroy () {
