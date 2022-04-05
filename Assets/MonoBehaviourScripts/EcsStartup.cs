@@ -3,6 +3,10 @@ using UnityEngine;
 using Voody.UniLeo.Lite;
 
 namespace Client {
+    class SharedConstants
+    {
+        public float speed = 1;
+    }
     sealed class EcsStartup : MonoBehaviour {
         EcsSystems _systems;
 
@@ -10,7 +14,7 @@ namespace Client {
             // register your shared data here, for example:
             // var shared = new Shared ();
             // systems = new EcsSystems (new EcsWorld (), shared);
-            _systems = new EcsSystems (new EcsWorld ());
+            _systems = new EcsSystems (new EcsWorld (), new SharedConstants());
             
             AddSystems();
 
