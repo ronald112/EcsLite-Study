@@ -1,8 +1,8 @@
-using UnityEngine;
+using System;
 
 namespace Client
 {
-    [SerializeField]
+    [Serializable]
     public struct PlayerTag
     {
         
