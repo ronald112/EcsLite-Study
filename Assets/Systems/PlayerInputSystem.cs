@@ -32,7 +32,7 @@ namespace Client
             if (!Input.GetMouseButtonDown(0)) return;
             Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
 
-            if (!Physics.Raycast(ray, out var hit)) return;
+            if (!Physics.Raycast(ray, out var hit, 100f, 1 << LayerMask.NameToLayer("Floor"))) return;
             foreach (var player in _filter)
             {
                 ref var directionComponent = ref _poolDirection.Add(player);
