@@ -1,6 +1,6 @@
 namespace Client
 {
-    internal struct DoorClosedTag
+    internal struct DoorReadyToMoveTag
     {
         
     }

@@ -35,7 +35,7 @@ public class InitDoorEntity : MonoBehaviour
         moveByTwoPoints.end = transform.position;
         moveByTwoPoints.end.y -= buttonMeshRenderer.bounds.size.y * 1.1f;
         
-        mainWorld.GetPool<DoorClosedTag>().Add(myEntity);
+        mainWorld.GetPool<DoorReadyToMoveTag>().Add(myEntity);
     }
 
 }

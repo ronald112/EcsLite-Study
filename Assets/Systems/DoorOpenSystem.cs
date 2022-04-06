@@ -18,7 +18,7 @@ namespace Client
             _world = systems.GetWorld();
             _filterPressedButton = _world.Filter<PressedButtonTagComponent>().Inc<ModelColorComponent>().End();
             
-            _filterClosedDoor = _world.Filter<DoorClosedTag>().Inc<ModelColorComponent>()
+            _filterClosedDoor = _world.Filter<DoorReadyToMoveTag>().Inc<ModelColorComponent>()
                 .Inc<MoveByTwoPointsComponent>().Inc<ModelTransformComponent>().End();
             
             _poolTwoPoints = _world.GetPool<MoveByTwoPointsComponent>();

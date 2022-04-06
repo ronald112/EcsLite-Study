@@ -133,6 +133,8 @@ GameObject:
   m_Component:
   - component: {fileID: 66986521}
   - component: {fileID: 66986522}
+  - component: {fileID: 66986524}
+  - component: {fileID: 66986523}
   m_Layer: 0
   m_Name: NavMesh
   m_TagString: Untagged
@@ -172,7 +174,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 55
+    m_Bits: 119
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_IgnoreNavMeshAgent: 1
@@ -183,6 +185,34 @@ MonoBehaviour:
   m_VoxelSize: 0.26666668
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 9004ed6474e0a9a41869b74e8e7a74e3, type: 2}
+--- !u!114 &66986523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66986520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312ee99e29ce440e979153df92476718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    navMeshSurface: {fileID: 66986522}
+--- !u!114 &66986524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 66986520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 236f59dc59fdd4c8a846a7fc5bb735ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  convertMode: 0
+  customWorld: 
 --- !u!1 &90508968
 GameObject:
   m_ObjectHideFlags: 0
@@ -1799,7 +1829,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    transform: {fileID: 100806899}
+    transform: {fileID: 1167574481}
 --- !u!114 &1167574486
 MonoBehaviour:
   m_ObjectHideFlags: 0
