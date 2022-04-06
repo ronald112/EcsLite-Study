@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using Leopotam.EcsLite;
-using TMPro;
 using UnityEngine;
 
 namespace Client
@@ -19,7 +18,8 @@ namespace Client
         {
             _shared = systems.GetShared<SharedConstants>();
             _world = systems.GetWorld();
-            _filter = _world.Filter<MovablePropComponent>().Inc<MoveToCoordinateComponent>().End();
+            _filter = _world.Filter<MovablePropComponent>().Inc<MoveToCoordinateComponent>()
+                .Inc<ModelTransformComponent>().End();
             _poolMovePath = _world.GetPool<MoveToCoordinateComponent>();
             _poolTransform = _world.GetPool<ModelTransformComponent>();
             _propStartMovementTime = new Dictionary<int, float>();
@@ -38,7 +38,8 @@ namespace Client
                 }
                 
                 transformComponent.transform.position = Vector3.Lerp(movePathComponent.fromCoordinate,
-                    movePathComponent.toCoordinate, (Time.time - _propStartMovementTime[propEntity]) * _shared.speed);
+                    movePathComponent.toCoordinate, 
+                    (Time.time - _propStartMovementTime[propEntity]) * _shared.speed);
                 
                 if (Vector3.SqrMagnitude(transformComponent.transform.position
                                          - movePathComponent.toCoordinate) < _shared.epsilon)

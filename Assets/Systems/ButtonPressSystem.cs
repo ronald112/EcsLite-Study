@@ -9,8 +9,6 @@ namespace Client
         private EcsWorld _world = null;
         private EcsFilter _filterPressedMove = null;
         private EcsPool<MoveByTwoPointsComponent> _poolTwoPoints = null;
-        private EcsPool<ModelColorComponent> _poolModelColor = null;
-        private EcsPool<ModelBoundsComponent> _poolModelBounds = null;
 
         public void Init(EcsSystems systems)
         {

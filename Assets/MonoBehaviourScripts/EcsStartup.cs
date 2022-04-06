@@ -38,6 +38,7 @@ namespace Client {
             _systems
                 .Add(new PlayerMovementSystem())
                 .Add(new PlayerInputSystem())
+                .Add(new DoorOpenSystem())
                 .Add(new ButtonPressSystem())
                 .Add(new ButtonUnpressSystem())
                 .Add(new PropMovementSystem())
