@@ -1,6 +1,6 @@
 namespace Client
 {
-    internal enum ModelColor
+    public enum ModelColor
     {
         Undefined = 0,
         Red,

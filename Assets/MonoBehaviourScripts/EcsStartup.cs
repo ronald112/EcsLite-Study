@@ -5,8 +5,8 @@ using Voody.UniLeo.Lite;
 namespace Client {
     class SharedConstants
     {
-        public float speed = 1;
-        public int accuracy = 1;
+        public float speed = 1f;
+        public int accuracy = 0;
     }
     sealed class EcsStartup : MonoBehaviour {
         EcsSystems _systems;
@@ -37,6 +37,7 @@ namespace Client {
             _systems
                 .Add(new PlayerMovementSystem())
                 .Add(new PlayerInputSystem())
+                .Add(new PropMovementSystem())
                 ;
         }
 
