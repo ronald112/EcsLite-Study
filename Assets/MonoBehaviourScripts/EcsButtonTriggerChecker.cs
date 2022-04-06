@@ -13,66 +13,59 @@ public class EcsButtonTriggerChecker : MonoBehaviour
     [SerializeField] private ModelColor _color = ModelColor.Undefined;
 
     [SerializeField] private MeshRenderer _doorMeshRenderer = null;
-
-    private Vector3 _doorBoundsSize = Vector3.zero;
-    private Vector3 _buttonBoundsSize = Vector3.zero;
     
     private int _entity = -1;
     private EcsWorld _mainWorld;
+    private EcsFilter _ecsFilter;
 
     private void Start()
     {
         // _doorBoundsSize.x = _doorMeshRenderer.bounds.size.x;
         // _doorBoundsSize.y = _doorMeshRenderer.bounds.size.y;
         // _doorBoundsSize.z = _doorMeshRenderer.bounds.size.z;
+        
+        _mainWorld = WorldHandler.GetMainWorld();
+
+        _ecsFilter = _mainWorld.Filter<ButtonTag>().Inc<ModelColorComponent>().End();
+        EcsPool<ModelColorComponent> poolModelColor = _mainWorld.GetPool<ModelColorComponent>();
+        foreach (var entity in _ecsFilter)
+        {
+            ref var color = ref poolModelColor.Get(entity).color;
+            if (color != _color) continue;
+
+            _entity = entity;
+            break;
+        }
 
         var buttonMeshRenderer = gameObject.GetComponent<MeshRenderer>();
-        _buttonBoundsSize.x = buttonMeshRenderer.bounds.size.x;
-        _buttonBoundsSize.y = buttonMeshRenderer.bounds.size.y;
-        _buttonBoundsSize.z = buttonMeshRenderer.bounds.size.z;
+        ref var moveByTwoPoints = ref _mainWorld.GetPool<MoveByTwoPointsComponent>().Add(_entity);
+        moveByTwoPoints.start = transform.position;
+        moveByTwoPoints.end = transform.position;
+        moveByTwoPoints.end.y -= buttonMeshRenderer.bounds.size.y * 0.7f;
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag(_targetTag)) return;
         
-        _mainWorld = WorldHandler.GetMainWorld();
-        if (_entity == -1)
-            _entity = _mainWorld.NewEntity();
-
-        ref var activeButton = ref _mainWorld.GetPool<PressedButtonTagComponent>().Add(_entity);
-        ref var modelColor = ref _mainWorld.GetPool<ModelColorComponent>().Add(_entity);
-        // ref var modelBounds = ref _mainWorld.GetPool<ModelBoundsComponent>().Add(_entity);
-        ref var moveTo = ref _mainWorld.GetPool<MoveToCoordinateComponent>().Add(_entity);
-        ref var movableProp = ref _mainWorld.GetPool<MovablePropComponent>().Add(_entity);
-        ref var transfomComponent = ref _mainWorld.GetPool<ModelTransformComponent>().Add(_entity);
-        modelColor.color = _color;
-        // modelBounds.bounds = _buttonBoundsSize;
-        transfomComponent.transform = transform;
-        moveTo.coordinate = transform.position;
-        moveTo.coordinate.y -= _buttonBoundsSize.y * 0.7f;
+        if (!_mainWorld.GetPool<PressedButtonTagComponent>().Has(_entity))
+            _mainWorld.GetPool<PressedButtonTagComponent>().Add(_entity);
         
-        Debug.Log($"{_buttonBoundsSize}");
-
-        var doorFilter = _mainWorld.Filter<PressedButtonTagComponent>().End();
-
+        var doorFilter = _mainWorld.Filter<DoorTag>().Inc<ModelColorComponent>().End();
         foreach (var doorEntity in doorFilter)
         {
-            // add to founded found door moveComponent
+            // add founded door logic
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag(_targetTag)) return;
-        
-        ref var moveTo = ref _mainWorld.GetPool<MoveToCoordinateComponent>().Add(_entity);
-        ref var movableProp = ref _mainWorld.GetPool<MovablePropComponent>().Add(_entity);
-        ref var transfomComponent = ref _mainWorld.GetPool<ModelTransformComponent>().Add(_entity);
-        // modelBounds.bounds = _buttonBoundsSize;
-        transfomComponent.transform = transform;
-        
-        
-        WorldHandler.GetMainWorld().GetPool<PressedButtonTagComponent>().Del(_entity);
+
+        var unpresBtn = _mainWorld.GetPool<UnpressedButtonTagComponent>();
+        if (!unpresBtn.Has(_entity))
+        {
+            unpresBtn.Add(_entity);
+        }
     }
 }

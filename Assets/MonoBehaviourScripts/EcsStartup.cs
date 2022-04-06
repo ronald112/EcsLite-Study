@@ -7,6 +7,7 @@ namespace Client {
     {
         public float speed = 1f;
         public int accuracy = 0;
+        public double epsilon = 9.99999944E-11f;
     }
     sealed class EcsStartup : MonoBehaviour {
         EcsSystems _systems;
@@ -37,6 +38,8 @@ namespace Client {
             _systems
                 .Add(new PlayerMovementSystem())
                 .Add(new PlayerInputSystem())
+                .Add(new ButtonPressSystem())
+                .Add(new ButtonUnpressSystem())
                 .Add(new PropMovementSystem())
                 ;
         }

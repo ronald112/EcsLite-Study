@@ -36,7 +36,7 @@ namespace Client
             foreach (var player in _filter)
             {
                 ref var directionComponent = ref _poolDirection.Add(player);
-                directionComponent.coordinate = hit.point;
+                directionComponent.toCoordinate = hit.point;
             }
         }
     }

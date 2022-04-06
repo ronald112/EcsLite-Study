@@ -26,7 +26,7 @@ namespace Client
                 ref var directionComponent = ref _poolDirection.Get(playerEntity);
                 ref var navMeshComponent = ref _poolNavMeshAgent.Get(playerEntity);
 
-                ref var direction = ref directionComponent.coordinate;
+                ref var direction = ref directionComponent.toCoordinate;
                 
                 navMeshComponent.agent.SetDestination(direction);
 

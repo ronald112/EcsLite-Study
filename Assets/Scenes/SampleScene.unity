@@ -294,6 +294,7 @@ GameObject:
   - component: {fileID: 100806905}
   - component: {fileID: 100806904}
   - component: {fileID: 100806903}
+  - component: {fileID: 100806906}
   m_Layer: 0
   m_Name: Wall (2)
   m_TagString: Untagged
@@ -400,9 +401,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 100806898}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Script: {fileID: 11500000, guid: c82dc037df4949708e10882191cec7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value:
+    color: 3
 --- !u!114 &100806905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -417,6 +420,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   convertMode: 0
   customWorld: 
+--- !u!114 &100806906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100806898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &106075984
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,9 +1216,11 @@ GameObject:
   - component: {fileID: 1065563143}
   - component: {fileID: 1065563142}
   - component: {fileID: 1065563145}
+  - component: {fileID: 1065563149}
   - component: {fileID: 1065563148}
   - component: {fileID: 1065563147}
   - component: {fileID: 1065563146}
+  - component: {fileID: 1065563150}
   m_Layer: 7
   m_Name: Button (3)
   m_TagString: Untagged
@@ -1302,6 +1319,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetTag: Player
   _color: 3
+  _doorMeshRenderer: {fileID: 0}
 --- !u!114 &1065563146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1325,10 +1343,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1065563140}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Script: {fileID: 11500000, guid: c82dc037df4949708e10882191cec7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value:
+    color: 3
 --- !u!114 &1065563148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065563140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9112a676aedb46ac9f144651be1f1761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1065563149
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1342,6 +1374,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   convertMode: 0
   customWorld: 
+--- !u!114 &1065563150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1065563140}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1092456126
 GameObject:
   m_ObjectHideFlags: 0
@@ -1618,6 +1662,7 @@ GameObject:
   - component: {fileID: 1167574487}
   - component: {fileID: 1167574486}
   - component: {fileID: 1167574485}
+  - component: {fileID: 1167574488}
   m_Layer: 0
   m_Name: Wall (6)
   m_TagString: Untagged
@@ -1714,7 +1759,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    transform: {fileID: 1167574481}
+    transform: {fileID: 100806899}
 --- !u!114 &1167574486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1724,9 +1769,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1167574480}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Script: {fileID: 11500000, guid: c82dc037df4949708e10882191cec7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value:
+    color: 4
 --- !u!114 &1167574487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1741,6 +1788,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   convertMode: 0
   customWorld: 
+--- !u!114 &1167574488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1167574480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1523075741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,6 +1910,7 @@ GameObject:
   - component: {fileID: 1579265487}
   - component: {fileID: 1579265486}
   - component: {fileID: 1579265485}
+  - component: {fileID: 1579265488}
   m_Layer: 0
   m_Name: Wall (1)
   m_TagString: Untagged
@@ -1947,7 +2007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   value:
-    transform: {fileID: 1579265481}
+    transform: {fileID: 100806899}
 --- !u!114 &1579265486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1957,9 +2017,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1579265480}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Script: {fileID: 11500000, guid: c82dc037df4949708e10882191cec7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value:
+    color: 2
 --- !u!114 &1579265487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1974,6 +2036,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   convertMode: 0
   customWorld: 
+--- !u!114 &1579265488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1579265480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1636324750
 GameObject:
   m_ObjectHideFlags: 0
@@ -1987,9 +2061,11 @@ GameObject:
   - component: {fileID: 1636324753}
   - component: {fileID: 1636324752}
   - component: {fileID: 1636324755}
+  - component: {fileID: 1636324759}
   - component: {fileID: 1636324758}
   - component: {fileID: 1636324757}
   - component: {fileID: 1636324756}
+  - component: {fileID: 1636324760}
   m_Layer: 7
   m_Name: Button (1)
   m_TagString: Untagged
@@ -2088,6 +2164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetTag: Player
   _color: 1
+  _doorMeshRenderer: {fileID: 0}
 --- !u!114 &1636324756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2111,10 +2188,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1636324750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Script: {fileID: 11500000, guid: c82dc037df4949708e10882191cec7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value:
+    color: 1
 --- !u!114 &1636324758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636324750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9112a676aedb46ac9f144651be1f1761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1636324759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2128,6 +2219,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   convertMode: 0
   customWorld: 
+--- !u!114 &1636324760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1636324750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1676348904
 GameObject:
   m_ObjectHideFlags: 0
@@ -2141,9 +2244,11 @@ GameObject:
   - component: {fileID: 1676348907}
   - component: {fileID: 1676348906}
   - component: {fileID: 1676348909}
+  - component: {fileID: 1676348913}
   - component: {fileID: 1676348912}
   - component: {fileID: 1676348911}
   - component: {fileID: 1676348910}
+  - component: {fileID: 1676348914}
   m_Layer: 7
   m_Name: Button
   m_TagString: Untagged
@@ -2242,6 +2347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetTag: Player
   _color: 2
+  _doorMeshRenderer: {fileID: 0}
 --- !u!114 &1676348910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2265,10 +2371,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1676348904}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Script: {fileID: 11500000, guid: c82dc037df4949708e10882191cec7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value:
+    color: 2
 --- !u!114 &1676348912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676348904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9112a676aedb46ac9f144651be1f1761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1676348913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2282,6 +2402,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   convertMode: 0
   customWorld: 
+--- !u!114 &1676348914
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1676348904}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1693246510
 GameObject:
   m_ObjectHideFlags: 0
@@ -2295,9 +2427,11 @@ GameObject:
   - component: {fileID: 1693246513}
   - component: {fileID: 1693246512}
   - component: {fileID: 1693246515}
+  - component: {fileID: 1693246519}
   - component: {fileID: 1693246518}
   - component: {fileID: 1693246517}
   - component: {fileID: 1693246516}
+  - component: {fileID: 1693246520}
   m_Layer: 7
   m_Name: Button (2)
   m_TagString: Untagged
@@ -2396,6 +2530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _targetTag: Player
   _color: 4
+  _doorMeshRenderer: {fileID: 0}
 --- !u!114 &1693246516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2419,10 +2554,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 1693246510}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Script: {fileID: 11500000, guid: c82dc037df4949708e10882191cec7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value:
+    color: 4
 --- !u!114 &1693246518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693246510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9112a676aedb46ac9f144651be1f1761, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1693246519
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2436,6 +2585,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   convertMode: 0
   customWorld: 
+--- !u!114 &1693246520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1693246510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1716334764
 GameObject:
   m_ObjectHideFlags: 0
@@ -2631,6 +2792,7 @@ GameObject:
   - component: {fileID: 2092504501}
   - component: {fileID: 2092504500}
   - component: {fileID: 2092504499}
+  - component: {fileID: 2092504502}
   m_Layer: 0
   m_Name: Wall (7)
   m_TagString: Untagged
@@ -2737,9 +2899,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 2092504494}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Script: {fileID: 11500000, guid: c82dc037df4949708e10882191cec7d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  value:
+    color: 1
 --- !u!114 &2092504501
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2754,3 +2918,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   convertMode: 0
   customWorld: 
+--- !u!114 &2092504502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092504494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d5c7646205d4a0887e04d5f0951c4ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
