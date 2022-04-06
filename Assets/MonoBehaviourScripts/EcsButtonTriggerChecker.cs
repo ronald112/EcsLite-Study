@@ -7,65 +7,31 @@ using Zenject;
 
 public class EcsButtonTriggerChecker : MonoBehaviour
 {
-    [Inject]
-    [SerializeField] private string _targetTag = "Player";
-    
-    [SerializeField] private ModelColor _color = ModelColor.Undefined;
+    private InitButtonEntity _initButtonEntity = null;
 
-    [SerializeField] private MeshRenderer _doorMeshRenderer = null;
-    
-    private int _entity = -1;
-    private EcsWorld _mainWorld;
-    private EcsFilter _ecsFilter;
-
-    private void Start()
+    private void Awake()
     {
-        // _doorBoundsSize.x = _doorMeshRenderer.bounds.size.x;
-        // _doorBoundsSize.y = _doorMeshRenderer.bounds.size.y;
-        // _doorBoundsSize.z = _doorMeshRenderer.bounds.size.z;
-        
-        _mainWorld = WorldHandler.GetMainWorld();
+        _initButtonEntity = GetComponent<InitButtonEntity>();
 
-        _ecsFilter = _mainWorld.Filter<ButtonTag>().Inc<ModelColorComponent>().End();
-        EcsPool<ModelColorComponent> poolModelColor = _mainWorld.GetPool<ModelColorComponent>();
-        foreach (var entity in _ecsFilter)
-        {
-            ref var color = ref poolModelColor.Get(entity).color;
-            if (color != _color) continue;
-
-            _entity = entity;
-            break;
-        }
-
-        var buttonMeshRenderer = gameObject.GetComponent<MeshRenderer>();
-        ref var moveByTwoPoints = ref _mainWorld.GetPool<MoveByTwoPointsComponent>().Add(_entity);
-        moveByTwoPoints.start = transform.position;
-        moveByTwoPoints.end = transform.position;
-        moveByTwoPoints.end.y -= buttonMeshRenderer.bounds.size.y * 0.7f;
+        if (!_initButtonEntity) throw new NullReferenceException();
     }
-
+    
     private void OnTriggerEnter(Collider other)
     {
-        if (!other.CompareTag(_targetTag)) return;
+        if (!other.CompareTag(_initButtonEntity.targetTag)) return;
         
-        if (!_mainWorld.GetPool<PressedButtonTagComponent>().Has(_entity))
-            _mainWorld.GetPool<PressedButtonTagComponent>().Add(_entity);
-        
-        var doorFilter = _mainWorld.Filter<DoorTag>().Inc<ModelColorComponent>().End();
-        foreach (var doorEntity in doorFilter)
-        {
-            // add founded door logic
-        }
+        if (!_initButtonEntity.mainWorld.GetPool<PressedButtonTagComponent>().Has(_initButtonEntity.myEntity))
+            _initButtonEntity.mainWorld.GetPool<PressedButtonTagComponent>().Add(_initButtonEntity.myEntity);
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (!other.CompareTag(_targetTag)) return;
+        if (!other.CompareTag(_initButtonEntity.targetTag)) return;
 
-        var unpresBtn = _mainWorld.GetPool<UnpressedButtonTagComponent>();
-        if (!unpresBtn.Has(_entity))
+        var unpresBtn = _initButtonEntity.mainWorld.GetPool<UnpressedButtonTagComponent>();
+        if (!unpresBtn.Has(_initButtonEntity.myEntity))
         {
-            unpresBtn.Add(_entity);
+            unpresBtn.Add(_initButtonEntity.myEntity);
         }
     }
 }
