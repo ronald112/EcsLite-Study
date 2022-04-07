@@ -1,13 +1,18 @@
 using UnityEngine;
 using Zenject;
 
-public class CameraInstaller : MonoInstaller
+namespace Installers
 {
-    [SerializeField] private Camera _camera;
-    public override void InstallBindings()
+    public class CameraInstaller : MonoInstaller
     {
-        Container.Bind<Camera>().FromInstance(_camera)
-            .AsSingle()
-            .NonLazy();
+        [SerializeField] private Camera _camera;
+        public override void InstallBindings()
+        {
+            Container
+                .Bind<Camera>()
+                .FromInstance(_camera)
+                .AsSingle()
+                .NonLazy();
+        }
     }
 }

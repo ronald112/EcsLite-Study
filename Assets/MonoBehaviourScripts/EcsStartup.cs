@@ -1,60 +1,63 @@
+using Factories;
 using Leopotam.EcsLite;
 using UnityEngine;
 using Voody.UniLeo.Lite;
+using Zenject;
 
 namespace Client {
-    class SharedConstants
-    {
-        public float speed = 1f;
-        public int accuracy = 0;
-        public double epsilon = 9.99999944E-11f;
-    }
     sealed class EcsStartup : MonoBehaviour {
         EcsSystems _systems;
+        
+        private DiContainer _diContainer;
 
-        void Start () {        
-            // register your shared data here, for example:
-            // var shared = new Shared ();
-            // systems = new EcsSystems (new EcsWorld (), shared);
-            _systems = new EcsSystems (new EcsWorld (), new SharedConstants());
+        [Inject]
+        public void Construct(DiContainer diContainer)
+        {
+            _diContainer = diContainer;
+        }
+        
+        void Start() {
+            _systems = new EcsSystems(new EcsWorld(), new SharedConstants());
             
             AddSystems();
 
             _systems.ConvertScene();
-            _systems.Init ();
+            _systems.Init();
         }
 
-        void Update () {
-            _systems?.Run ();
+        void Update() {
+            _systems?.Run();
         }
 
         private void AddSystems()
         {
 #if UNITY_EDITOR
-            // add debug systems for custom worlds here, for example:
-            // .Add (new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem ("events"))
             _systems.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
 #endif
-            _systems
-                .Add(new PlayerMovementSystem())
-                .Add(new MouseRegisterRaycastHitFloorSystem())
-                .Add(new PlayerInputSystem())
-                .Add(new DoorOpenSystem())
-                .Add(new DoorStatusTagChangeSystem())
-                .Add(new NavMeshRebuildSystem())
-                .Add(new ButtonPressSystem())
-                .Add(new ButtonUnpressSystem())
-                .Add(new PropMovementSystem())
-                .Add(new MouseUnregisterRaycastHitFloorSystem())
-                ;
+            AddNewSystem<PlayerMovementSystem>();
+            AddNewSystem<MouseRegisterRaycastHitFloorSystem>();
+            AddNewSystem<SpawnPointSystem>();
+            AddNewSystem<PlayerInputSystem>();
+            AddNewSystem<DoorOpenSystem>();
+            AddNewSystem<DoorStatusTagChangeSystem>();
+            AddNewSystem<NavMeshRebuildSystem>();
+            AddNewSystem<ButtonPressSystem>();
+            AddNewSystem<ButtonUnpressSystem>();
+            AddNewSystem<PropMovementSystem>();
+            AddNewSystem<MouseUnregisterRaycastHitFloorSystem>();
+        }
+        
+        public void AddNewSystem<T>() where T : IEcsSystem
+        {
+            _systems.Add(_diContainer.Instantiate<T>());
         }
 
-        void OnDestroy () {
+        void OnDestroy() {
             if (_systems != null) {
-                _systems.Destroy ();
+                _systems.Destroy();
                 // add here cleanup for custom worlds, for example:
                 // _systems.GetWorld ("events").Destroy ();
-                _systems.GetWorld ().Destroy ();
+                _systems.GetWorld().Destroy();
                 _systems = null;
             }
         }

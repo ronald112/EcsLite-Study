@@ -133,8 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 66986521}
   - component: {fileID: 66986522}
-  - component: {fileID: 66986524}
-  - component: {fileID: 66986523}
   m_Layer: 0
   m_Name: NavMesh
   m_TagString: Untagged
@@ -185,34 +183,6 @@ MonoBehaviour:
   m_VoxelSize: 0.26666668
   m_BuildHeightMesh: 0
   m_NavMeshData: {fileID: 23800000, guid: 9004ed6474e0a9a41869b74e8e7a74e3, type: 2}
---- !u!114 &66986523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66986520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 312ee99e29ce440e979153df92476718, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    navMeshSurface: {fileID: 66986522}
---- !u!114 &66986524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 66986520}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 236f59dc59fdd4c8a846a7fc5bb735ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convertMode: 0
-  customWorld: 
 --- !u!1 &90508968
 GameObject:
   m_ObjectHideFlags: 0
@@ -584,6 +554,49 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106075984}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &354412349
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 354412351}
+  - component: {fileID: 354412350}
+  m_Layer: 0
+  m_Name: ItemFactoryInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &354412350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354412349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1b7996e2dcabb4bb86a61fe6a27deb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &354412351
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354412349}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1716334766}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &495749886
 GameObject:
   m_ObjectHideFlags: 0
@@ -920,13 +933,28 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 735121746}
+  - component: {fileID: 735121745}
   m_Layer: 0
   m_Name: NavMeshInstaller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
+--- !u!114 &735121745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 735121744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 411a21ae2aa61bb4b9824aafbb6234da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _agent: {fileID: 1092456135}
+  _navMeshSurface: {fileID: 66986522}
 --- !u!4 &735121746
 Transform:
   m_ObjectHideFlags: 0
@@ -1158,8 +1186,6 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
-  - component: {fileID: 963194230}
-  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1232,34 +1258,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &963194229
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2a482b66be014da0abf88e65e3a568ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  value:
-    camera: {fileID: 963194227}
---- !u!114 &963194230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 963194225}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 236f59dc59fdd4c8a846a7fc5bb735ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  convertMode: 0
-  customWorld: 
 --- !u!1 &1065563140
 GameObject:
   m_ObjectHideFlags: 0
@@ -1570,8 +1568,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8366569045034fc58422e91db72e4c9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  value:
-    agent: {fileID: 1092456135}
+  value: {agent: {fileID: 1092456135}}
 --- !u!114 &1092456132
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2784,6 +2781,9 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 1904580447}
+  - {fileID: 628948128}
+  - {fileID: 354412350}
+  - {fileID: 735121745}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -2815,6 +2815,7 @@ Transform:
   - {fileID: 735121746}
   - {fileID: 628948127}
   - {fileID: 1904580446}
+  - {fileID: 354412351}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
