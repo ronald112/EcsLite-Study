@@ -28,10 +28,10 @@ public class EcsButtonTriggerChecker : MonoBehaviour
     {
         if (!other.CompareTag(_initButtonEntity.targetTag)) return;
 
-        var unpresBtn = _initButtonEntity.mainWorld.GetPool<UnpressedButtonTagComponent>();
-        if (!unpresBtn.Has(_initButtonEntity.myEntity))
+        var unpressBtn = _initButtonEntity.mainWorld.GetPool<UnpressedButtonTagComponent>();
+        if (!unpressBtn.Has(_initButtonEntity.myEntity))
         {
-            unpresBtn.Add(_initButtonEntity.myEntity);
+            unpressBtn.Add(_initButtonEntity.myEntity);
         }
     }
 }
