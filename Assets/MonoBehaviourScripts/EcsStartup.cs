@@ -37,6 +37,7 @@ namespace Client {
 #endif
             _systems
                 .Add(new PlayerMovementSystem())
+                .Add(new MouseRegisterRaycastHitFloorSystem())
                 .Add(new PlayerInputSystem())
                 .Add(new DoorOpenSystem())
                 .Add(new DoorStatusTagChangeSystem())
@@ -44,6 +45,7 @@ namespace Client {
                 .Add(new ButtonPressSystem())
                 .Add(new ButtonUnpressSystem())
                 .Add(new PropMovementSystem())
+                .Add(new MouseUnregisterRaycastHitFloorSystem())
                 ;
         }
 

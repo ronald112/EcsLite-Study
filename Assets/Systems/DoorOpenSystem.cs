@@ -44,10 +44,14 @@ namespace Client
 
                     ref var modelTransformComponent = ref _poolModelTransform.Get(doorEntity);
                     ref var moveByTwoPointsComponent = ref _poolTwoPoints.Get(doorEntity);
-                    
-                    ref var moveToCoordinateComponent = ref _poolMoveToCoordinate.Add(doorEntity);
-                    moveToCoordinateComponent.fromCoordinate = modelTransformComponent.transform.position;
-                    moveToCoordinateComponent.toCoordinate = moveByTwoPointsComponent.end;
+
+                    if (!_poolMoveToCoordinate.Has(doorEntity))
+                    {
+                        ref var moveToCoordinateComponent = ref _poolMoveToCoordinate.Add(doorEntity);
+
+                        moveToCoordinateComponent.fromCoordinate = modelTransformComponent.transform.position;
+                        moveToCoordinateComponent.toCoordinate = moveByTwoPointsComponent.end;
+                    }
                 }
             }
         }

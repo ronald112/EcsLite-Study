@@ -29,6 +29,8 @@ namespace Client
                 ref var direction = ref directionComponent.toCoordinate;
                 
                 navMeshComponent.agent.SetDestination(direction);
+                
+                
 
                 _poolDirection.Del(playerEntity);
             }

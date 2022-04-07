@@ -1,43 +1,37 @@
 using Leopotam.EcsLite;
-using UnityEngine;
 
 namespace Client
 {
     sealed class PlayerInputSystem : IEcsRunSystem, IEcsInitSystem
     {
-
-        private Camera Cam = null;
-
         private EcsWorld _world = null;
         private EcsFilter _filter = null;
         private EcsPool<MoveToCoordinateComponent> _poolDirection = null;
+        private EcsFilter _filterMouseFloorHit = null;
+        private EcsPool<MouseRaycastHitFloorResultComponent> _poolMouseFloorHit = null;
 
         public void Init(EcsSystems systems)
         {
             _world = systems.GetWorld();
+            _filterMouseFloorHit = _world.Filter<MouseRaycastHitFloorResultComponent>().End();
             _filter = _world.Filter<PlayerTag>().End();
             _poolDirection = _world.GetPool<MoveToCoordinateComponent>();
-
-            var cameraPool = _world.GetPool<CameraComponent>();
-            var cameraFilter = _world.Filter<CameraComponent>().End();
-            foreach (var cameraEntity in cameraFilter)
-            {
-                ref var camera = ref cameraPool.Get(cameraEntity);
-                Cam = camera.camera;
-            }
+            _poolMouseFloorHit = _world.GetPool<MouseRaycastHitFloorResultComponent>();
         }
 
         public void Run(EcsSystems systems)
         {
-            if (!Input.GetMouseButtonDown(0)) return;
-            Ray ray = Cam.ScreenPointToRay(Input.mousePosition);
-
-            if (!Physics.Raycast(ray, out var hit, 100f, 1 << LayerMask.NameToLayer("Floor"))) return;
-            foreach (var player in _filter)
+            foreach (var mouseHit in _filterMouseFloorHit)
             {
-                ref var directionComponent = ref _poolDirection.Add(player);
-                directionComponent.toCoordinate = hit.point;
+                foreach (var player in _filter)
+                {
+                    ref var directionComponent = ref _poolDirection.Add(player);
+                    directionComponent.toCoordinate = _poolMouseFloorHit.Get(mouseHit).position;
+                }
             }
+
         }
     }
 }
+
+    
