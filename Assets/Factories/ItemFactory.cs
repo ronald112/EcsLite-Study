@@ -6,17 +6,10 @@ namespace Factories
 {
     class ItemFactory : IItemFactory
     {
-        public ItemFactory()
-        {
-            
-        }
-        
-        public int CreatePrefabWithEntities(string path, EcsWorld ecsWorld, out GameObject gameObject)
+        public void CreatePrefab(string path, out GameObject gameObject)
         {
             var prefab = Resources.Load(path) as GameObject;
             gameObject = GameObject.Instantiate(prefab);
-            return 0;
-            // Voody.UniLeo.Lite.ConvertToEntity
         }
     }
 }

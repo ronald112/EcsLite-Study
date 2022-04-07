@@ -5,6 +5,6 @@ namespace Factories
 {
     public interface IItemFactory
     {
-        public int CreatePrefabWithEntities(string path, EcsWorld ecsWorld, out GameObject gameObject);
+        public void CreatePrefab(string path, out GameObject gameObject);
     }
 }

@@ -9,7 +9,12 @@ namespace Client
     sealed class SpawnPointSystem : IEcsInitSystem, IEcsRunSystem
     {
         private IItemFactory _itemFactory = null;
-        
+        private EcsWorld _world = null;
+        private EcsFilter _filterMouseFloorHit = null;
+        private EcsPool<MouseRaycastHitFloorResultComponent> _poolMouseFloorHit = null;
+
+        private GameObject _pointOfGameObject = null;
+
         public SpawnPointSystem(IItemFactory itemFactory)
         {
             _itemFactory = itemFactory;
@@ -17,13 +22,23 @@ namespace Client
         
         public void Init(EcsSystems systems)
         {
-            // .CreatePrefabWithEntities("MouseClick", systems.GetWorld(), out GameObject o)
-            Debug.Log(_itemFactory);
+            _world = systems.GetWorld();
+            
+            _filterMouseFloorHit = _world.Filter<MouseRaycastHitFloorResultComponent>().End();
+            _poolMouseFloorHit = _world.GetPool<MouseRaycastHitFloorResultComponent>();
         }
 
         public void Run(EcsSystems systems)
         {
-            //throw new System.NotImplementedException();
+            foreach (var entity in _filterMouseFloorHit)
+            {
+                var pos = _poolMouseFloorHit.Get(entity).position;
+                if (!_pointOfGameObject)
+                {
+                    _itemFactory.CreatePrefab("MouseClick", out _pointOfGameObject);
+                }
+                _pointOfGameObject.GetComponent<Transform>().position = pos;
+            }
         }
     }
 }
