@@ -11,13 +11,13 @@ namespace Client
 
         private EcsWorld _world = null;
         private EcsFilter _filter = null;
-        private EcsPool<NavMeshSurfaceNeedsRebuildTagComponent> _ecsPool = null;
+        private EcsPool<NavMeshSurfaceNeedsRebuildEventComponent> _ecsPool = null;
 
         public void Init(EcsSystems systems)
         {
             _world = systems.GetWorld();
-            _filter = _world.Filter<NavMeshSurfaceNeedsRebuildTagComponent>().End();
-            _ecsPool = _world.GetPool<NavMeshSurfaceNeedsRebuildTagComponent>();
+            _filter = _world.Filter<NavMeshSurfaceNeedsRebuildEventComponent>().End();
+            _ecsPool = _world.GetPool<NavMeshSurfaceNeedsRebuildEventComponent>();
         }
 
         public void Run(EcsSystems systems)
@@ -26,7 +26,6 @@ namespace Client
             {
                 _navMeshSurface.RemoveData();
                 _navMeshSurface.BuildNavMesh();
-                _ecsPool.Del(entity);
             }
         }
     }

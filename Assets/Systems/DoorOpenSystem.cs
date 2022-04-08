@@ -6,7 +6,7 @@ namespace Client
     {
         private EcsWorld _world = null;
         private EcsFilter _filterPressedButton = null;
-        private EcsPool<MoveByTwoPointsComponent> _poolTwoPoints = null;
+        private EcsPool<PathByTwoPointsComponent> _poolTwoPoints = null;
         private EcsPool<ModelColorComponent> _poolModelColor = null;
         private EcsPool<ModelTransformComponent> _poolModelTransform = null;
         private EcsFilter _filterClosedDoor = null;
@@ -15,12 +15,12 @@ namespace Client
         public void Init(EcsSystems systems)
         {
             _world = systems.GetWorld();
-            _filterPressedButton = _world.Filter<PressedButtonTagComponent>().Inc<ModelColorComponent>().End();
+            _filterPressedButton = _world.Filter<PressedButtonEventComponent>().Inc<ModelColorComponent>().End();
             
             _filterClosedDoor = _world.Filter<DoorReadyToMoveTag>().Inc<ModelColorComponent>()
-                .Inc<MoveByTwoPointsComponent>().Inc<ModelTransformComponent>().End();
+                .Inc<PathByTwoPointsComponent>().Inc<ModelTransformComponent>().End();
             
-            _poolTwoPoints = _world.GetPool<MoveByTwoPointsComponent>();
+            _poolTwoPoints = _world.GetPool<PathByTwoPointsComponent>();
             _poolModelColor = _world.GetPool<ModelColorComponent>();
             _poolModelTransform = _world.GetPool<ModelTransformComponent>();
             _poolMoveToCoordinate = _world.GetPool<MoveToCoordinateComponent>();

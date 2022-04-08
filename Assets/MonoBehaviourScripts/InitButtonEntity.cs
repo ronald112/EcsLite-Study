@@ -32,7 +32,7 @@ public class InitButtonEntity : MonoBehaviour
         }
 
         var buttonMeshRenderer = gameObject.GetComponent<MeshRenderer>();
-        ref var moveByTwoPoints = ref mainWorld.GetPool<MoveByTwoPointsComponent>().Add(myEntity);
+        ref var moveByTwoPoints = ref mainWorld.GetPool<PathByTwoPointsComponent>().Add(myEntity);
         moveByTwoPoints.start = transform.position;
         moveByTwoPoints.end = transform.position;
         moveByTwoPoints.end.y -= buttonMeshRenderer.bounds.size.y * 0.7f;

@@ -6,15 +6,15 @@ namespace Client
     {
         private EcsWorld _world = null;
         private EcsFilter _filterPressedMove = null;
-        private EcsPool<MoveByTwoPointsComponent> _poolTwoPoints = null;
+        private EcsPool<PathByTwoPointsComponent> _poolTwoPoints = null;
 
         public void Init(EcsSystems systems)
         {
             _world = systems.GetWorld();
-            _filterPressedMove = _world.Filter<UnpressedButtonTagComponent>()
-                .Inc<MoveByTwoPointsComponent>().Exc<MoveToCoordinateComponent>().End();
+            _filterPressedMove = _world.Filter<UnpressedButtonEventComponent>().Inc<ModelTransformComponent>()
+                .Inc<PathByTwoPointsComponent>().End();
             
-            _poolTwoPoints = _world.GetPool<MoveByTwoPointsComponent>();
+            _poolTwoPoints = _world.GetPool<PathByTwoPointsComponent>();
         }
 
         public void Run(EcsSystems systems)
@@ -22,11 +22,13 @@ namespace Client
             foreach (var buttonEntity in _filterPressedMove)
             {
                 ref var newPositionComponent = ref _poolTwoPoints.Get(buttonEntity);
-
-                _world.GetPool<UnpressedButtonTagComponent>().Del(buttonEntity);
-                ref var move = ref _world.GetPool<MoveToCoordinateComponent>().Add(buttonEntity);
+                
+                var poolMoveToCoordinate = _world.GetPool<MoveToCoordinateComponent>();
+                if(poolMoveToCoordinate.Has(buttonEntity))
+                    poolMoveToCoordinate.Del(buttonEntity);
+                ref var move = ref poolMoveToCoordinate.Add(buttonEntity);
                 ref var modelTransform = ref _world.GetPool<ModelTransformComponent>().Get(buttonEntity);
-                move.toCoordinate =  newPositionComponent.start;
+                move.toCoordinate = newPositionComponent.start;
                 move.fromCoordinate = modelTransform.transform.position;
             }
         }

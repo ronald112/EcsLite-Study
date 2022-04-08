@@ -1,4 +1,5 @@
 using Leopotam.EcsLite;
+using Leopotam.EcsLite.ExtendedSystems;
 using Leopotam.EcsLite.UnityEditor;
 using UnityEngine;
 using Voody.UniLeo.Lite;
@@ -39,12 +40,15 @@ namespace Client {
             AddNewSystem<SpawnPointSystem>();
             AddNewSystem<PlayerInputSystem>();
             AddNewSystem<DoorOpenSystem>();
-            AddNewSystem<DoorStatusTagChangeSystem>();
+            AddNewSystem<DoorOpenedSystem>();
             AddNewSystem<NavMeshRebuildSystem>();
             AddNewSystem<ButtonPressSystem>();
             AddNewSystem<ButtonUnpressSystem>();
             AddNewSystem<PropMovementSystem>();
-            AddNewSystem<MouseUnregisterRaycastHitFloorSystem>();
+            _systems.DelHere<PressedButtonEventComponent>();
+            _systems.DelHere<UnpressedButtonEventComponent>();
+            _systems.DelHere<MouseRaycastHitFloorResultComponent>();
+            _systems.DelHere<NavMeshSurfaceNeedsRebuildEventComponent>();
         }
         
         public void AddNewSystem<T>() where T : IEcsSystem

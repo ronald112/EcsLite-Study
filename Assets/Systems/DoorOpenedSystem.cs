@@ -3,10 +3,10 @@ using UnityEngine;
 
 namespace Client
 {
-    sealed class DoorStatusTagChangeSystem : IEcsInitSystem, IEcsRunSystem
+    sealed class DoorOpenedSystem : IEcsInitSystem, IEcsRunSystem
     {
         private EcsWorld _world = null;
-        private EcsPool<MoveByTwoPointsComponent> _poolTwoPoints = null;
+        private EcsPool<PathByTwoPointsComponent> _poolTwoPoints = null;
         private EcsPool<ModelTransformComponent> _poolModelTransform = null;
         private EcsFilter _filterMovingDoor = null;
         private SharedConstants _shared = null;
@@ -17,9 +17,9 @@ namespace Client
             _world = systems.GetWorld();
             
             _filterMovingDoor = _world.Filter<DoorTag>().Inc<DoorReadyToMoveTag>()
-                .Inc<MoveByTwoPointsComponent>().Inc<ModelTransformComponent>().End();
+                .Inc<PathByTwoPointsComponent>().Inc<ModelTransformComponent>().End();
 
-            _poolTwoPoints = _world.GetPool<MoveByTwoPointsComponent>();
+            _poolTwoPoints = _world.GetPool<PathByTwoPointsComponent>();
             _poolModelTransform = _world.GetPool<ModelTransformComponent>();
         }
 
@@ -36,13 +36,8 @@ namespace Client
                     _world.GetPool<DoorReadyToMoveTag>().Del(doorEntity);
                     _world.GetPool<DoorOpenedTag>().Add(doorEntity);
                     int newEntity = _world.NewEntity();
-                    _world.GetPool<NavMeshSurfaceNeedsRebuildTagComponent>().Add(newEntity);
+                    _world.GetPool<NavMeshSurfaceNeedsRebuildEventComponent>().Add(newEntity);
                 }
-                // else if (Vector3.SqrMagnitude(modelTransformComponent.transform.position
-                //                               - moveByTwoPointsComponent.start) < _shared.epsilon)
-                // {
-                //     _world.GetPool<Do>().Del(doorEntity);
-                // }
             }
         }
     }
