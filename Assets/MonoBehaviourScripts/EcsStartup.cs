@@ -35,10 +35,12 @@ namespace Client {
 #if UNITY_EDITOR
             _systems.Add(new EcsWorldDebugSystem());
 #endif
-            AddNewSystem<PlayerMovementSystem>();
+            
             AddNewSystem<MouseRegisterRaycastHitFloorSystem>();
             AddNewSystem<SpawnPointSystem>();
             AddNewSystem<PlayerInputSystem>();
+            AddNewSystem<PlayerMovementSystem>();
+            
             AddNewSystem<DoorInitOpeningByButtonPressSystem>();
             AddNewSystem<DoorStopMovingSystem>();
             
@@ -49,6 +51,8 @@ namespace Client {
             
             AddNewSystem<DoorFinishMovingSystem>();
             AddNewSystem<NavMeshRebuildSystem>();
+            
+            
             _systems.DelHere<PressedButtonEventComponent>();
             _systems.DelHere<UnpressedButtonEventComponent>();
             _systems.DelHere<MouseRaycastHitFloorResultComponent>();
