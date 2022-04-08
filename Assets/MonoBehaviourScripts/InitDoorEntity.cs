@@ -12,6 +12,7 @@ public class InitDoorEntity : MonoBehaviour
     [NonSerialized] public int myEntity = -1;
     
     [SerializeField] public ModelColor color = ModelColor.Undefined;
+    [Range(0, 5)] [SerializeField] private float _openingSpeed = 1.0f;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class InitDoorEntity : MonoBehaviour
         moveByTwoPoints.end.y -= buttonMeshRenderer.bounds.size.y * 1.1f;
         
         mainWorld.GetPool<DoorReadyToMoveTag>().Add(myEntity);
+        ref var openingSpeedComponent = ref mainWorld.GetPool<SpeedComponent>().Add(myEntity);
+        openingSpeedComponent.speed = _openingSpeed;
     }
-
 }

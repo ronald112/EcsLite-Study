@@ -447,6 +447,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 3
+  _openingSpeed: 1.5
 --- !u!114 &100806908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2090,6 +2091,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 4
+  _openingSpeed: 1.5
 --- !u!114 &1167574490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2365,6 +2367,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 2
+  _openingSpeed: 1.5
 --- !u!114 &1579265490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3316,6 +3319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: 1
+  _openingSpeed: 1.5
 --- !u!114 &2092504504
 MonoBehaviour:
   m_ObjectHideFlags: 0

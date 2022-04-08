@@ -12,6 +12,7 @@ namespace Client
         private SharedConstants _shared = null;
 
         private EcsPool<FinishedMovingEvent> _poolFinishedMoving = null;
+        private EcsPool<SpeedComponent> _poolMovementSpeed = null;
 
         public void Init(EcsSystems systems)
         {
@@ -22,6 +23,7 @@ namespace Client
             _poolMovePath = _world.GetPool<MoveToCoordinateComponent>();
             _poolTransform = _world.GetPool<ModelTransformComponent>();
             _poolFinishedMoving = _world.GetPool<FinishedMovingEvent>();
+            _poolMovementSpeed = _world.GetPool<SpeedComponent>();
         }
 
         public void Run(EcsSystems systems)
@@ -31,10 +33,15 @@ namespace Client
                 ref var movePathComponent = ref _poolMovePath.Get(propEntity);
                 ref var transformComponent = ref _poolTransform.Get(propEntity);
 
-
+                var movementSpeed = _shared.defaultSpeed;
+                if (_poolMovementSpeed.Has(propEntity))
+                {
+                    movementSpeed = _poolMovementSpeed.Get(propEntity).speed;
+                }
+                
                 transformComponent.transform.position = Vector3.MoveTowards(transformComponent.transform.position,
-                    movePathComponent.toCoordinate, 
-                    Time.deltaTime * _shared.speed);
+                movePathComponent.toCoordinate, 
+                Time.deltaTime * movementSpeed);
                 
                 if (Vector3.SqrMagnitude(transformComponent.transform.position
                                          - movePathComponent.toCoordinate) < _shared.epsilon)

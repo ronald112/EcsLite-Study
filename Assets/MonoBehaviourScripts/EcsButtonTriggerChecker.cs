@@ -16,9 +16,10 @@ public class EcsButtonTriggerChecker : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (!other.CompareTag(_initButtonEntity.targetTag)) return;
-        
-        if (!_initButtonEntity.mainWorld.GetPool<PressedButtonEventComponent>().Has(_initButtonEntity.myEntity))
-            _initButtonEntity.mainWorld.GetPool<PressedButtonEventComponent>().Add(_initButtonEntity.myEntity);
+
+        var ecsPoolButtonEvent = _initButtonEntity.mainWorld.GetPool<PressedButtonEventComponent>();
+        if (!ecsPoolButtonEvent.Has(_initButtonEntity.myEntity))
+            ecsPoolButtonEvent.Add(_initButtonEntity.myEntity);
     }
 
     private void OnTriggerExit(Collider other)
