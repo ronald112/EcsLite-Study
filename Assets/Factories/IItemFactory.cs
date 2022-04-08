@@ -1,4 +1,4 @@
-using Leopotam.EcsLite;
+using Enums;
 using UnityEngine;
 
 namespace Factories
@@ -6,6 +6,6 @@ namespace Factories
     public interface IItemFactory
     {
         public void Init();
-        public GameObject CreatePrefab(Enums.PrefabName name);
+        public GameObject CreatePrefab(PrefabName name);
     }
 }

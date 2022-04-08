@@ -1,9 +1,6 @@
 using System;
 using Client;
-using Leopotam.EcsLite;
 using UnityEngine;
-using Voody.UniLeo.Lite;
-using Zenject;
 
 public class EcsButtonTriggerChecker : MonoBehaviour
 {

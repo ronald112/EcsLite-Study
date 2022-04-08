@@ -1,24 +1,23 @@
 using System.Collections.Generic;
-using Leopotam.EcsLite;
-using UnityEditor;
+using Enums;
 using UnityEngine;
 
 namespace Factories
 {
     class ItemFactory : IItemFactory
     {
-        private Dictionary<Enums.PrefabName, string> enumToNameMapping = null;
+        private Dictionary<PrefabName, string> enumToNameMapping = null;
 
         public void Init()
         {
-            enumToNameMapping = new Dictionary<Enums.PrefabName, string>()
+            enumToNameMapping = new Dictionary<PrefabName, string>()
             {
-                {Enums.PrefabName.MouseClick, "MouseClick"}
+                {PrefabName.MouseClick, "MouseClick"}
             };
 
         }
         
-        public GameObject CreatePrefab(Enums.PrefabName name)
+        public GameObject CreatePrefab(PrefabName name)
         {
             if (!enumToNameMapping.TryGetValue(name, out var value)) return null;
             

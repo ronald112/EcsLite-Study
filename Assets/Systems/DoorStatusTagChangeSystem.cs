@@ -1,6 +1,5 @@
 using Leopotam.EcsLite;
 using UnityEngine;
-using UnityEngine.AI;
 
 namespace Client
 {

@@ -1,5 +1,5 @@
-using Factories;
 using Leopotam.EcsLite;
+using Leopotam.EcsLite.UnityEditor;
 using UnityEngine;
 using Voody.UniLeo.Lite;
 using Zenject;
@@ -32,7 +32,7 @@ namespace Client {
         private void AddSystems()
         {
 #if UNITY_EDITOR
-            _systems.Add(new Leopotam.EcsLite.UnityEditor.EcsWorldDebugSystem());
+            _systems.Add(new EcsWorldDebugSystem());
 #endif
             AddNewSystem<PlayerMovementSystem>();
             AddNewSystem<MouseRegisterRaycastHitFloorSystem>();
