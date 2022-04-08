@@ -1,10 +1,9 @@
-using System.Collections.Generic;
 using Leopotam.EcsLite;
 using UnityEngine;
 
 namespace Client
 {
-    sealed class PropMovementSystem : IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem
+    sealed class PropMovementSystem : IEcsInitSystem, IEcsRunSystem
     {
         private EcsWorld _world = null;
         private EcsFilter _filter = null;
@@ -12,7 +11,7 @@ namespace Client
         private EcsPool<ModelTransformComponent> _poolTransform = null;
         private SharedConstants _shared = null;
 
-        private Dictionary<int, float> _propStartMovementTime = null;
+        private EcsPool<FinishedMovingEvent> _poolFinishedMoving = null;
 
         public void Init(EcsSystems systems)
         {
@@ -22,7 +21,7 @@ namespace Client
                 .Inc<ModelTransformComponent>().End();
             _poolMovePath = _world.GetPool<MoveToCoordinateComponent>();
             _poolTransform = _world.GetPool<ModelTransformComponent>();
-            _propStartMovementTime = new Dictionary<int, float>();
+            _poolFinishedMoving = _world.GetPool<FinishedMovingEvent>();
         }
 
         public void Run(EcsSystems systems)
@@ -32,28 +31,18 @@ namespace Client
                 ref var movePathComponent = ref _poolMovePath.Get(propEntity);
                 ref var transformComponent = ref _poolTransform.Get(propEntity);
 
-                if (!_propStartMovementTime.ContainsKey(propEntity))
-                {
-                    _propStartMovementTime.Add(propEntity, Time.time);
-                }
-                
-                transformComponent.transform.position = Vector3.Lerp(movePathComponent.fromCoordinate,
+
+                transformComponent.transform.position = Vector3.MoveTowards(transformComponent.transform.position,
                     movePathComponent.toCoordinate, 
-                    (Time.time - _propStartMovementTime[propEntity]) * _shared.speed);
+                    Time.deltaTime * _shared.speed);
                 
                 if (Vector3.SqrMagnitude(transformComponent.transform.position
                                          - movePathComponent.toCoordinate) < _shared.epsilon)
                 {
                     _poolMovePath.Del(propEntity);
-                    _propStartMovementTime.Remove(propEntity);
+                    _poolFinishedMoving.Add(propEntity);
                 }
             }
-        }
-
-        public void Destroy(EcsSystems systems)
-        {
-            _propStartMovementTime.Clear();
-            _propStartMovementTime = null;
         }
     }
 }

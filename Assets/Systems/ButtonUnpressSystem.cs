@@ -29,7 +29,6 @@ namespace Client
                 ref var move = ref poolMoveToCoordinate.Add(buttonEntity);
                 ref var modelTransform = ref _world.GetPool<ModelTransformComponent>().Get(buttonEntity);
                 move.toCoordinate = newPositionComponent.start;
-                move.fromCoordinate = modelTransform.transform.position;
             }
         }
     }

@@ -2,7 +2,7 @@ using Leopotam.EcsLite;
 
 namespace Client
 {
-    sealed class DoorOpenSystem : IEcsInitSystem, IEcsRunSystem
+    sealed class DoorInitOpeningByButtonPressSystem : IEcsInitSystem, IEcsRunSystem
     {
         private EcsWorld _world = null;
         private EcsFilter _filterPressedButton = null;
@@ -17,8 +17,8 @@ namespace Client
             _world = systems.GetWorld();
             _filterPressedButton = _world.Filter<PressedButtonEventComponent>().Inc<ModelColorComponent>().End();
             
-            _filterClosedDoor = _world.Filter<DoorReadyToMoveTag>().Inc<ModelColorComponent>()
-                .Inc<PathByTwoPointsComponent>().Inc<ModelTransformComponent>().End();
+            _filterClosedDoor = _world.Filter<DoorTag>().Inc<ModelColorComponent>()
+                .Inc<PathByTwoPointsComponent>().Inc<ModelTransformComponent>().Exc<DoorOpenedTag>().End();
             
             _poolTwoPoints = _world.GetPool<PathByTwoPointsComponent>();
             _poolModelColor = _world.GetPool<ModelColorComponent>();
@@ -47,8 +47,7 @@ namespace Client
                     if (!_poolMoveToCoordinate.Has(doorEntity))
                     {
                         ref var moveToCoordinateComponent = ref _poolMoveToCoordinate.Add(doorEntity);
-
-                        moveToCoordinateComponent.fromCoordinate = modelTransformComponent.transform.position;
+                        
                         moveToCoordinateComponent.toCoordinate = moveByTwoPointsComponent.end;
                     }
                 }

@@ -39,16 +39,21 @@ namespace Client {
             AddNewSystem<MouseRegisterRaycastHitFloorSystem>();
             AddNewSystem<SpawnPointSystem>();
             AddNewSystem<PlayerInputSystem>();
-            AddNewSystem<DoorOpenSystem>();
-            AddNewSystem<DoorOpenedSystem>();
-            AddNewSystem<NavMeshRebuildSystem>();
+            AddNewSystem<DoorInitOpeningByButtonPressSystem>();
+            AddNewSystem<DoorStopMovingSystem>();
+            
+            
             AddNewSystem<ButtonPressSystem>();
             AddNewSystem<ButtonUnpressSystem>();
             AddNewSystem<PropMovementSystem>();
+            
+            AddNewSystem<DoorFinishMovingSystem>();
+            AddNewSystem<NavMeshRebuildSystem>();
             _systems.DelHere<PressedButtonEventComponent>();
             _systems.DelHere<UnpressedButtonEventComponent>();
             _systems.DelHere<MouseRaycastHitFloorResultComponent>();
             _systems.DelHere<NavMeshSurfaceNeedsRebuildEventComponent>();
+            _systems.DelHere<FinishedMovingEvent>();
         }
         
         public void AddNewSystem<T>() where T : IEcsSystem
