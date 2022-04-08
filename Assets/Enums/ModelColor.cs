@@ -1,4 +1,4 @@
-namespace Client
+namespace Enums
 {
     public enum ModelColor
     {

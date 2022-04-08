@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Client;
+using Enums;
 using Leopotam.EcsLite;
 using UnityEngine;
 using Voody.UniLeo.Lite;

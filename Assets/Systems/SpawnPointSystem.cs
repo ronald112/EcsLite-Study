@@ -1,4 +1,5 @@
 using System.Reflection;
+using Enums;
 using Factories;
 using Leopotam.EcsLite;
 using UnityEngine;
@@ -26,6 +27,8 @@ namespace Client
             
             _filterMouseFloorHit = _world.Filter<MouseRaycastHitFloorResultComponent>().End();
             _poolMouseFloorHit = _world.GetPool<MouseRaycastHitFloorResultComponent>();
+            
+            _itemFactory.Init();
         }
 
         public void Run(EcsSystems systems)
@@ -35,7 +38,7 @@ namespace Client
                 var pos = _poolMouseFloorHit.Get(entity).position;
                 if (!_pointOfGameObject)
                 {
-                    _itemFactory.CreatePrefab("MouseClick", out _pointOfGameObject);
+                    _pointOfGameObject = _itemFactory.CreatePrefab(PrefabName.MouseClick);
                 }
                 _pointOfGameObject.GetComponent<Transform>().position = pos;
             }

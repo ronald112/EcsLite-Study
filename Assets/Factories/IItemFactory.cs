@@ -5,6 +5,7 @@ namespace Factories
 {
     public interface IItemFactory
     {
-        public void CreatePrefab(string path, out GameObject gameObject);
+        public void Init();
+        public GameObject CreatePrefab(Enums.PrefabName name);
     }
 }
