@@ -11,13 +11,11 @@ namespace Client
         private Camera _camera = null;
 
         private EcsWorld _world = null;
-        private EcsFilter _filter = null;
         private EcsPool<MouseRaycastHitFloorResultComponent> _poolDirection = null;
 
         public void Init(EcsSystems systems)
         {
             _world = systems.GetWorld();
-            _filter = _world.Filter<MouseRaycastHitFloorResultComponent>().End();
             _poolDirection = _world.GetPool<MouseRaycastHitFloorResultComponent>();
         }
 
