@@ -16,7 +16,7 @@ namespace Client
             
             _filterMovingDoor = _world.Filter<DoorTag>().Inc<MoveToCoordinateComponent>()
                 .Inc<ModelColorComponent>().End();
-            _filterUnpressedButton = _world.Filter<UnpressedButtonEventComponent>().Inc<ModelColorComponent>().End();
+            _filterUnpressedButton = _world.Filter<UnpressedButtonEvent>().Inc<ModelColorComponent>().End();
             
             _poolMoveToCoordinate = _world.GetPool<MoveToCoordinateComponent>();
             _poolModelColor = _world.GetPool<ModelColorComponent>();

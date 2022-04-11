@@ -4,7 +4,6 @@ using Enums;
 using Leopotam.EcsLite;
 using UnityEngine;
 using Voody.UniLeo.Lite;
-using Zenject;
 
 public class InitButtonEntity : MonoBehaviour
 {

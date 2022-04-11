@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Client
 {
-    sealed class PlayerMoveAnimationSystem : IEcsInitSystem, IEcsRunSystem
+    sealed class PlayerMovementAnimationSystem : IEcsInitSystem, IEcsRunSystem
     {
         private EcsWorld _world = null;
         private EcsFilter _filter = null;

@@ -15,7 +15,7 @@ namespace Client
         public void Init(EcsSystems systems)
         {
             _world = systems.GetWorld();
-            _filterPressedButton = _world.Filter<PressedButtonEventComponent>().Inc<ModelColorComponent>().End();
+            _filterPressedButton = _world.Filter<PressedButtonEvent>().Inc<ModelColorComponent>().End();
             
             _filterClosedDoor = _world.Filter<DoorTag>().Inc<ModelColorComponent>()
                 .Inc<PathByTwoPointsComponent>().Inc<ModelTransformComponent>().Exc<DoorOpenedTag>().End();
@@ -41,7 +41,6 @@ namespace Client
 
                     if (buttonColor != doorColor) continue;
 
-                    ref var modelTransformComponent = ref _poolModelTransform.Get(doorEntity);
                     ref var moveByTwoPointsComponent = ref _poolTwoPoints.Get(doorEntity);
 
                     if (!_poolMoveToCoordinate.Has(doorEntity))

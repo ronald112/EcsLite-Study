@@ -11,7 +11,7 @@ namespace Client
         public void Init(EcsSystems systems)
         {
             _world = systems.GetWorld();
-            _filterPressedMove = _world.Filter<UnpressedButtonEventComponent>().Inc<ModelTransformComponent>()
+            _filterPressedMove = _world.Filter<UnpressedButtonEvent>().Inc<ModelTransformComponent>()
                 .Inc<PathByTwoPointsComponent>().End();
             
             _poolTwoPoints = _world.GetPool<PathByTwoPointsComponent>();

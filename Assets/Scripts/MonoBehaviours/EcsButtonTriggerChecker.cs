@@ -17,19 +17,17 @@ public class EcsButtonTriggerChecker : MonoBehaviour
     {
         if (!other.CompareTag(_initButtonEntity.targetTag)) return;
 
-        var ecsPoolButtonEvent = _initButtonEntity.mainWorld.GetPool<PressedButtonEventComponent>();
-        if (!ecsPoolButtonEvent.Has(_initButtonEntity.myEntity))
-            ecsPoolButtonEvent.Add(_initButtonEntity.myEntity);
+        var poolButtonEvent = _initButtonEntity.mainWorld.GetPool<OnTriggerEnterEvent>();
+        if (!poolButtonEvent.Has(_initButtonEntity.myEntity))
+            poolButtonEvent.Add(_initButtonEntity.myEntity);
     }
 
     private void OnTriggerExit(Collider other)
     {
         if (!other.CompareTag(_initButtonEntity.targetTag)) return;
 
-        var unpressBtn = _initButtonEntity.mainWorld.GetPool<UnpressedButtonEventComponent>();
-        if (!unpressBtn.Has(_initButtonEntity.myEntity))
-        {
-            unpressBtn.Add(_initButtonEntity.myEntity);
-        }
+        var poolButtonEvent = _initButtonEntity.mainWorld.GetPool<OnTriggerExitEvent>();
+        if (!poolButtonEvent.Has(_initButtonEntity.myEntity))
+            poolButtonEvent.Add(_initButtonEntity.myEntity);
     }
 }
