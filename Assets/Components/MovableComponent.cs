@@ -3,7 +3,7 @@ using System;
 namespace Client
 {
     [Serializable]
-    public struct MovablePropComponent
+    public struct MovableComponent
     {
         
     }

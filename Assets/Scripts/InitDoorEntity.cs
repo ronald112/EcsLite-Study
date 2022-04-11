@@ -8,34 +8,35 @@ using Voody.UniLeo.Lite;
 public class InitDoorEntity : MonoBehaviour
 {
     private EcsFilter _ecsFilter = null;
-    [NonSerialized] public EcsWorld mainWorld = null;
-    [NonSerialized] public int myEntity = -1;
+    private EcsWorld _mainWorld = null;
     
     [SerializeField] public ModelColor color = ModelColor.Undefined;
+    
     [Range(0, 5)] [SerializeField] private float _openingSpeed = 1.0f;
 
     void Start()
     {
-        mainWorld = WorldHandler.GetMainWorld();
-        EcsPool<ModelColorComponent> poolModelColor = mainWorld.GetPool<ModelColorComponent>();
-        _ecsFilter = mainWorld.Filter<DoorTag>().Inc<ModelColorComponent>().End();
+        _mainWorld = WorldHandler.GetMainWorld();
+        EcsPool<ModelColorComponent> poolModelColor = _mainWorld.GetPool<ModelColorComponent>();
+        _ecsFilter = _mainWorld.Filter<DoorTag>().Inc<ModelColorComponent>().End();
+        int myEntity = -1;
         foreach (var entity in _ecsFilter)
         {
-            ref var color = ref poolModelColor.Get(entity).color;
-            if (color != this.color) continue;
+            ref var colorComponent = ref poolModelColor.Get(entity).color;
+            if (colorComponent != this.color) continue;
 
             myEntity = entity;
             break;
         }
 
         var buttonMeshRenderer = gameObject.GetComponent<MeshRenderer>();
-        ref var moveByTwoPoints = ref mainWorld.GetPool<PathByTwoPointsComponent>().Add(myEntity);
+        ref var moveByTwoPoints = ref _mainWorld.GetPool<PathByTwoPointsComponent>().Add(myEntity);
         moveByTwoPoints.start = transform.position;
         moveByTwoPoints.end = transform.position;
         moveByTwoPoints.end.y -= buttonMeshRenderer.bounds.size.y * 1.1f;
         
-        mainWorld.GetPool<DoorReadyToMoveTag>().Add(myEntity);
-        ref var openingSpeedComponent = ref mainWorld.GetPool<SpeedComponent>().Add(myEntity);
+        _mainWorld.GetPool<DoorReadyToMoveTag>().Add(myEntity);
+        ref var openingSpeedComponent = ref _mainWorld.GetPool<SpeedComponent>().Add(myEntity);
         openingSpeedComponent.speed = _openingSpeed;
     }
 }

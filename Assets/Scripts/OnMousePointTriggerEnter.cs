@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class MousePointTriggerChecker : MonoBehaviour
+public class OnMousePointTriggerEnter : MonoBehaviour
 {
     private string _targetTag = "Player";
     private void OnTriggerEnter(Collider other)

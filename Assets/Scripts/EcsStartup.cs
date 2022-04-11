@@ -47,7 +47,7 @@ namespace Client {
             
             AddNewSystem<ButtonPressSystem>();
             AddNewSystem<ButtonUnpressSystem>();
-            AddNewSystem<PropMovementSystem>();
+            AddNewSystem<MovementSystem>();
             
             AddNewSystem<DoorFinishMovingSystem>();
             

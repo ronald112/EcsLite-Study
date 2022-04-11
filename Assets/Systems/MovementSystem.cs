@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Client
 {
-    sealed class PropMovementSystem : IEcsInitSystem, IEcsRunSystem
+    sealed class MovementSystem : IEcsInitSystem, IEcsRunSystem
     {
         private EcsWorld _world = null;
         private EcsFilter _filter = null;
@@ -18,7 +18,7 @@ namespace Client
         {
             _shared = systems.GetShared<SharedConstants>();
             _world = systems.GetWorld();
-            _filter = _world.Filter<MovablePropComponent>().Inc<MoveToCoordinateComponent>()
+            _filter = _world.Filter<MovableComponent>().Inc<MoveToCoordinateComponent>()
                 .Inc<ModelTransformComponent>().End();
             _poolMovePath = _world.GetPool<MoveToCoordinateComponent>();
             _poolTransform = _world.GetPool<ModelTransformComponent>();

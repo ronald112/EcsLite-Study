@@ -7,7 +7,7 @@ namespace Client
 {
     sealed class SpawnPointSystem : IEcsInitSystem, IEcsRunSystem
     {
-        private IItemFactory _itemFactory = null;
+        private readonly IItemFactory _itemFactory = null;
         private EcsWorld _world = null;
         private EcsFilter _filterMouseFloorHit = null;
         private EcsPool<MouseRaycastHitFloorResultComponent> _poolMouseFloorHit = null;

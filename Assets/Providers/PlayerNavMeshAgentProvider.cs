@@ -1,6 +1,7 @@
-﻿using Voody.UniLeo.Lite;
+﻿using Client;
+using Voody.UniLeo.Lite;
 
-namespace Client
+namespace Providers
 {
     public class PlayerNavMeshAgentProvider : MonoProvider<PlayerNavMeshAgentComponent>
     {
