@@ -1685,15 +1685,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1092456130}
-  - component: {fileID: 1092456135}
-  - component: {fileID: 1092456136}
   - component: {fileID: 1092456133}
   - component: {fileID: 1092456132}
-  - component: {fileID: 1092456134}
-  - component: {fileID: 1092456131}
-  - component: {fileID: 1092456129}
-  - component: {fileID: 1092456128}
   - component: {fileID: 1092456127}
+  - component: {fileID: 1092456136}
+  - component: {fileID: 1092456135}
+  - component: {fileID: 1092456128}
+  - component: {fileID: 1092456129}
+  - component: {fileID: 1092456131}
+  - component: {fileID: 1092456134}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1856,11 +1856,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1092456126}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a9aafd630dba4f4dadc05178fb41884, type: 3}
+  m_Script: {fileID: 11500000, guid: 78b1d663879045ada4f043571b775246, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _character: {fileID: 1092456128}
-  _navMeshAgent: {fileID: 1092456135}
+  value:
+    character: {fileID: 1092456128}
 --- !u!1 &1128497520
 GameObject:
   m_ObjectHideFlags: 0

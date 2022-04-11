@@ -14,7 +14,8 @@ namespace Client
         public void Init(EcsSystems systems)
         {
             _world = systems.GetWorld();
-            _filter = _world.Filter<PlayerTag>().Inc<MoveToCoordinateComponent>().End();
+            _filter = _world.Filter<PlayerTag>().Inc<MoveToCoordinateComponent>()
+                .Inc<PlayerNavMeshAgentComponent>().End();
             _poolDirection = _world.GetPool<MoveToCoordinateComponent>();
             _poolAgent = _world.GetPool<PlayerNavMeshAgentComponent>();
         }
