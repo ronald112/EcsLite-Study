@@ -12,8 +12,7 @@ public class InitButtonEntity : MonoBehaviour
     [NonSerialized] public EcsWorld mainWorld = null;
     [NonSerialized] public int myEntity = -1;
     
-    [Inject]
-    [NonSerialized] public string targetTag = null;
+    [SerializeField] public string targetTag = "Player";
     
     [SerializeField] public ModelColor color = ModelColor.Undefined;
 

@@ -596,7 +596,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1716334766}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &495749886
 GameObject:
@@ -954,9 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 411a21ae2aa61bb4b9824aafbb6234da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _agent: {fileID: 1092456135}
   _navMeshSurface: {fileID: 66986522}
-  _character: {fileID: 1092456128}
 --- !u!4 &735121746
 Transform:
   m_ObjectHideFlags: 0
@@ -1659,6 +1657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b549f5e829b7514086acc53a886abbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTag: Player
   color: 3
 --- !u!1 &1092456126
 GameObject:
@@ -1677,6 +1676,7 @@ GameObject:
   - component: {fileID: 1092456131}
   - component: {fileID: 1092456129}
   - component: {fileID: 1092456128}
+  - component: {fileID: 1092456127}
   m_Layer: 3
   m_Name: Player
   m_TagString: Player
@@ -1684,6 +1684,20 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &1092456127
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1092456126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7740bd08254f4abe9992ef9d87233568, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  value:
+    navMeshAgent: {fileID: 1092456135}
 --- !u!114 &1092456128
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1828,6 +1842,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a9aafd630dba4f4dadc05178fb41884, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _character: {fileID: 1092456128}
+  _navMeshAgent: {fileID: 1092456135}
 --- !u!1 &1128497520
 GameObject:
   m_ObjectHideFlags: 0
@@ -2578,6 +2594,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b549f5e829b7514086acc53a886abbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTag: Player
   color: 1
 --- !u!1 &1676348904
 GameObject:
@@ -2772,6 +2789,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b549f5e829b7514086acc53a886abbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTag: Player
   color: 2
 --- !u!1 &1693246510
 GameObject:
@@ -2966,6 +2984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b549f5e829b7514086acc53a886abbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  targetTag: Player
   color: 4
 --- !u!1 &1716334764
 GameObject:
@@ -2998,7 +3017,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
   _monoInstallers:
-  - {fileID: 1904580447}
   - {fileID: 628948128}
   - {fileID: 354412350}
   - {fileID: 735121745}
@@ -3032,7 +3050,6 @@ Transform:
   m_Children:
   - {fileID: 735121746}
   - {fileID: 628948127}
-  - {fileID: 1904580446}
   - {fileID: 354412351}
   m_Father: {fileID: 0}
   m_RootOrder: 3
@@ -3071,50 +3088,6 @@ Transform:
   m_Father: {fileID: 838337783}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1904580445
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1904580446}
-  - component: {fileID: 1904580447}
-  m_Layer: 0
-  m_Name: EcsButtonTriggerCheckerInstaller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1904580446
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904580445}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1716334766}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1904580447
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1904580445}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db57d87efde445fb90181f472698b708, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _target: Player
 --- !u!1 &2056598766
 GameObject:
   m_ObjectHideFlags: 0

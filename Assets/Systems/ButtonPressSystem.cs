@@ -27,7 +27,6 @@ namespace Client
                 if(poolMoveToCoordinate.Has(buttonEntity))
                     poolMoveToCoordinate.Del(buttonEntity);
                 ref var move = ref poolMoveToCoordinate.Add(buttonEntity);
-                ref var modelTransform = ref _world.GetPool<ModelTransformComponent>().Get(buttonEntity);
                 move.toCoordinate =  newPositionComponent.end;
             }
         }

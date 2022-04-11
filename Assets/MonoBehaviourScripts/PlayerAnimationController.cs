@@ -5,9 +5,9 @@ using Zenject;
 
 public class PlayerAnimationController : MonoBehaviour
 {
-    [Inject] private ThirdPersonCharacter _character;
+    [SerializeField] private ThirdPersonCharacter _character = null;
 
-    [Inject] private NavMeshAgent _navMeshAgent;
+    [SerializeField] private NavMeshAgent _navMeshAgent = null;
 
     void Start()
     {

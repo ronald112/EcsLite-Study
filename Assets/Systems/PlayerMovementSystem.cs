@@ -6,7 +6,7 @@ namespace Client
 {
     sealed class PlayerMovementSystem : IEcsRunSystem, IEcsInitSystem
     {
-        [Inject] private NavMeshAgent navMeshAgent;
+        private NavMeshAgent _navMeshAgent = null;
             
         private EcsWorld _world = null;
         private EcsFilter _filter = null;
@@ -17,6 +17,14 @@ namespace Client
             _world = systems.GetWorld();
             _filter = _world.Filter<PlayerTag>().Inc<MoveToCoordinateComponent>().End();
             _poolDirection = _world.GetPool<MoveToCoordinateComponent>();
+
+            var fliterAgent = _world.Filter<PlayerNavMeshAgentComponent>().End();
+            var poolAgent = _world.GetPool<PlayerNavMeshAgentComponent>();
+            foreach (var playerAgentEntity in fliterAgent)
+            {
+                ref var navMeshAgent = ref poolAgent.Get(playerAgentEntity);
+                _navMeshAgent = navMeshAgent.navMeshAgent;
+            }
         }
 
         public void Run(EcsSystems systems)
@@ -28,7 +36,7 @@ namespace Client
 
                 ref var direction = ref directionComponent.toCoordinate;
                 
-                navMeshAgent.SetDestination(direction);
+                _navMeshAgent.SetDestination(direction);
 
                 _poolDirection.Del(playerEntity);
             }
