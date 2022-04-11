@@ -50,13 +50,11 @@ namespace Client {
             AddNewSystem<PropMovementSystem>();
             
             AddNewSystem<DoorFinishMovingSystem>();
-            AddNewSystem<NavMeshRebuildSystem>();
             
             
             _systems.DelHere<PressedButtonEventComponent>();
             _systems.DelHere<UnpressedButtonEventComponent>();
             _systems.DelHere<MouseRaycastHitFloorResultComponent>();
-            _systems.DelHere<NavMeshSurfaceNeedsRebuildEventComponent>();
             _systems.DelHere<FinishedMovingEvent>();
         }
         

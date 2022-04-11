@@ -20,9 +20,6 @@ namespace Client
             {
                 _world.GetPool<DoorReadyToMoveTag>().Del(doorEntity);
                 _world.GetPool<DoorOpenedTag>().Add(doorEntity);
-                
-                int newEntity = _world.NewEntity();
-                _world.GetPool<NavMeshSurfaceNeedsRebuildEventComponent>().Add(newEntity);
             }
         }
     }
